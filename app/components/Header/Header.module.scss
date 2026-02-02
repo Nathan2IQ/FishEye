@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 100px;
+
+  .srOnly {
+    display: none;
+  }
+
+  .subtitle {
+    font-size: 36px;
+    color: #901c1c;
+  }
+}

@@ -1,0 +1,41 @@
+.wrapper {
+  width: 30%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+
+    .portrait {
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .name {
+      font-size: 36px;
+      color: #d3573c;
+      padding-top: 20px;
+    }
+
+    .location {
+      font-size: 13px;
+      color: #901c1c;
+    }
+
+    .tagline {
+      font-size: 10px;
+    }
+
+    .price {
+      font-size: 9px;
+      color: #757575;
+    }
+  }
+}
