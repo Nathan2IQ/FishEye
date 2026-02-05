@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 100px;
+}
+.header .srOnly {
+  display: none;
+}
+.header .subtitle {
+  font-size: 36px;
+  color: #901c1c;
+}/*# sourceMappingURL=Header.module.css.map */

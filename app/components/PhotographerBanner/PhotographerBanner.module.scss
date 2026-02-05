@@ -1,0 +1,145 @@
+.banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fafafa;
+  margin: auto;
+  width: 90%;
+  height: 300px;
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 40px;
+
+    .name {
+      color: #d3573c;
+      font-size: 64px;
+    }
+
+    .location {
+      color: #901c1c;
+      font-size: 24px;
+    }
+
+    .tagline {
+      color: #525252;
+      font-size: 18px;
+    }
+  }
+
+  .contact {
+    background-color: #901c1c;
+    width: 170px;
+    height: 70px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #db8876;
+      color: #000;
+    }
+  }
+
+  .portrait {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 0 40px;
+  }
+}
+
+// Styles pour la modale
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  .contactModal {
+    background-color: #db8876;
+    border-radius: 5px;
+    padding: 10px 40px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 95vh;
+    overflow-y: auto;
+
+    .modalHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+
+      h2 {
+        font-size: 64px;
+        color: #000;
+        font-weight: 400;
+      }
+
+      .closeButton {
+        font-size: 100px;
+        cursor: pointer;
+        color: #fff;
+        width: 10px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        margin-top: -100px;
+      }
+    }
+
+    .contactForm {
+      display: flex;
+      flex-direction: column;
+
+      .formGroup {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          font-size: 36px;
+          color: #312e2e;
+          font-weight: 400;
+        }
+
+        input,
+        textarea {
+          padding: 15px;
+          border: none;
+          border-radius: 5px;
+          font-size: 18px;
+          background-color: #fff;
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 120px;
+        }
+      }
+
+      .submitButton {
+        background-color: #901c1c;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 15px 30px;
+        font-size: 18px;
+        cursor: pointer;
+        align-self: flex-start;
+        margin-top: 20px;
+      }
+    }
+  }
+}
