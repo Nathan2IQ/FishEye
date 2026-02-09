@@ -54,92 +54,79 @@
   }
 }
 
-// Styles pour la modale
-.modalBackdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+// Styles pour la modale de contact
+.contactModal {
+  background-color: #db8876;
+  border-radius: 5px;
+  padding: 10px 40px;
+  max-width: 700px;
+  width: 90%;
+  max-height: 95vh;
+  overflow-y: auto;
+
+  // Personnalisation du bouton de fermeture pour la modale de contact
+  button {
+    font-size: 100px;
+    color: #fff;
+    width: auto;
+    height: auto;
+    top: -15px;
+    right: 30px;
+  }
+}
+
+.modalHeader {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  z-index: 1000;
+  margin-bottom: 10px;
+  padding-right: 60px; // Espace pour le bouton de fermeture
 
-  .contactModal {
-    background-color: #db8876;
+  h2 {
+    font-size: 64px;
+    color: #000;
+    font-weight: 400;
+  }
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-size: 36px;
+      color: #312e2e;
+      font-weight: 400;
+    }
+
+    input,
+    textarea {
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      background-color: #fff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+  }
+
+  .submitButton {
+    background-color: #901c1c;
+    color: white;
+    border: none;
     border-radius: 5px;
-    padding: 10px 40px;
-    max-width: 700px;
-    width: 90%;
-    max-height: 95vh;
-    overflow-y: auto;
-
-    .modalHeader {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-
-      h2 {
-        font-size: 64px;
-        color: #000;
-        font-weight: 400;
-      }
-
-      .closeButton {
-        font-size: 100px;
-        cursor: pointer;
-        color: #fff;
-        width: 10px;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        margin-top: -100px;
-      }
-    }
-
-    .contactForm {
-      display: flex;
-      flex-direction: column;
-
-      .formGroup {
-        display: flex;
-        flex-direction: column;
-
-        label {
-          font-size: 36px;
-          color: #312e2e;
-          font-weight: 400;
-        }
-
-        input,
-        textarea {
-          padding: 15px;
-          border: none;
-          border-radius: 5px;
-          font-size: 18px;
-          background-color: #fff;
-        }
-
-        textarea {
-          resize: vertical;
-          min-height: 120px;
-        }
-      }
-
-      .submitButton {
-        background-color: #901c1c;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 15px 30px;
-        font-size: 18px;
-        cursor: pointer;
-        align-self: flex-start;
-        margin-top: 20px;
-      }
-    }
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-top: 20px;
   }
 }

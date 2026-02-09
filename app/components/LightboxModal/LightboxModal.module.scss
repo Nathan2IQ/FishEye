@@ -1,0 +1,121 @@
+// Styles spécifiques à la lightbox
+
+.lightboxModal {
+  background: transparent;
+  max-width: 95vw;
+  max-height: 95vh;
+  padding: 0;
+  box-shadow: none;
+}
+
+.lightboxContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px;
+  position: relative;
+}
+
+.mediaContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80vw;
+  max-height: 80vh;
+}
+
+.media {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+.mediaTitle {
+  color: #901c1c;
+  font-size: 1.5rem;
+  margin-top: 20px;
+  text-align: center;
+  background: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.navButton {
+  background: none;
+  border: none;
+  color: #901c1c;
+  cursor: pointer;
+  padding: 20px;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:focus {
+    outline: 2px solid #901c1c;
+    outline-offset: 2px;
+  }
+
+  svg {
+    display: block;
+  }
+}
+
+.prevButton {
+  order: -1;
+}
+
+.nextButton {
+  order: 1;
+}
+
+.counter {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  color: #901c1c;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .lightboxContent {
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .mediaContainer {
+    max-width: 90vw;
+  }
+
+  .media {
+    max-height: 60vh;
+  }
+
+  .mediaTitle {
+    font-size: 1.2rem;
+    padding: 8px 15px;
+  }
+
+  .navButton {
+    padding: 10px;
+
+    svg {
+      width: 20px;
+      height: 32px;
+    }
+  }
+
+  .counter {
+    font-size: 1rem;
+    padding: 8px 15px;
+  }
+}

@@ -1,0 +1,127 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Modal from "../Modal/Modal";
+import Style from "./LightboxModal.module.scss";
+
+export default function LightboxModal({
+  media,
+  initialIndex = 0,
+  isOpen,
+  onClose,
+}) {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+
+  // Réinitialiser l'index quand initialIndex change
+  useEffect(() => {
+    setCurrentIndex(initialIndex);
+  }, [initialIndex]);
+
+  // Navigation vers le média précédent
+  const goToPrevious = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? media.length - 1 : prevIndex - 1,
+    );
+  };
+
+  // Navigation vers le média suivant
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === media.length - 1 ? 0 : prevIndex + 1,
+    );
+  };
+
+  // Gérer la navigation au clavier
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (!isOpen) return;
+
+      if (e.key === "ArrowLeft") {
+        goToPrevious();
+      } else if (e.key === "ArrowRight") {
+        goToNext();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyPress);
+    return () => document.removeEventListener("keydown", handleKeyPress);
+  }, [isOpen, currentIndex]);
+
+  if (!media || media.length === 0) return null;
+
+  const currentMedia = media[currentIndex];
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      ariaLabel="Visionneuse d'images"
+      className={Style.lightboxModal}
+      closeOnBackdrop={true}
+      closeOnEscape={true}
+    >
+      <div className={Style.lightboxContent}>
+        {/* Navigation précédent */}
+        <button
+          className={`${Style.navButton} ${Style.prevButton}`}
+          onClick={goToPrevious}
+          aria-label="Image précédente"
+        >
+          <svg width="30" height="48" viewBox="0 0 30 48" fill="none">
+            <path
+              d="M26 4L6 24L26 44"
+              stroke="currentColor"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+
+        {/* Média affiché */}
+        <div className={Style.mediaContainer}>
+          {currentMedia.image ? (
+            <img
+              src={`/${currentMedia.image}`}
+              alt={currentMedia.title}
+              className={Style.media}
+            />
+          ) : (
+            <video
+              src={`/${currentMedia.video}`}
+              controls
+              className={Style.media}
+            >
+              Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
+          )}
+
+          {/* Titre du média */}
+          <p className={Style.mediaTitle}>{currentMedia.title}</p>
+        </div>
+
+        {/* Navigation suivant */}
+        <button
+          className={`${Style.navButton} ${Style.nextButton}`}
+          onClick={goToNext}
+          aria-label="Image suivante"
+        >
+          <svg width="30" height="48" viewBox="0 0 30 48" fill="none">
+            <path
+              d="M4 4L24 24L4 44"
+              stroke="currentColor"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+
+      {/* Compteur */}
+      <div className={Style.counter}>
+        {currentIndex + 1} / {media.length}
+      </div>
+    </Modal>
+  );
+}
