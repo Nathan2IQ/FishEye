@@ -67,15 +67,7 @@ export default function LightboxModal({
           onClick={goToPrevious}
           aria-label="Image précédente"
         >
-          <svg width="30" height="48" viewBox="0 0 30 48" fill="none">
-            <path
-              d="M26 4L6 24L26 44"
-              stroke="currentColor"
-              strokeWidth="4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <i className="fa-solid fa-angle-left"></i>
         </button>
 
         {/* Média affiché */}
@@ -106,21 +98,8 @@ export default function LightboxModal({
           onClick={goToNext}
           aria-label="Image suivante"
         >
-          <svg width="30" height="48" viewBox="0 0 30 48" fill="none">
-            <path
-              d="M4 4L24 24L4 44"
-              stroke="currentColor"
-              strokeWidth="4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <i className="fa-solid fa-angle-right"></i>
         </button>
-      </div>
-
-      {/* Compteur */}
-      <div className={Style.counter}>
-        {currentIndex + 1} / {media.length}
       </div>
     </Modal>
   );
