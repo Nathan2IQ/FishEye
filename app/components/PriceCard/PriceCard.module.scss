@@ -1,0 +1,16 @@
+.priceCard {
+  position: fixed;
+  bottom: 0;
+  right: 30px;
+  background-color: #db8876;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 350px;
+  height: 50px;
+  color: black;
+  font-size: 24px;
+  border-radius: 5px 5px 0 0;
+}

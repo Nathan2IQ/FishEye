@@ -74,6 +74,13 @@ export default function Media({ media, onClick, onLikeUpdate }) {
     }
   };
 
+  const handleLikeKeyDown = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleLike(e);
+    }
+  };
+
   return (
     <article
       key={media.id}
@@ -109,6 +116,9 @@ export default function Media({ media, onClick, onLikeUpdate }) {
           <i
             className={isLiked ? "fa-solid fa-heart" : "fa-regular fa-heart"}
             onClick={handleLike}
+            onKeyDown={handleLikeKeyDown}
+            tabIndex={0}
+            role="button"
             aria-disabled={isUpdating}
             aria-label={isLiked ? "Unlike" : "Like"}
           ></i>

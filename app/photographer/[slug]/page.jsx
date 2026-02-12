@@ -29,6 +29,7 @@ export default async function PhotographerPage({ params }) {
     <div>
       <PhotographerBanner photographer={photographer} />
       <PhotographerContent
+        photographer={photographer}
         medias={await getAllMediasForPhotographer(id)}
         onLikeUpdate={handleUpdateLikes}
       />

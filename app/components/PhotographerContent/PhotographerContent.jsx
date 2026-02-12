@@ -1,11 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Filter from "../Filter/Filter";
 import MediaGallery from "../MediaGallery/MediaGallery";
+import PriceCard from "../PriceCard/PriceCard";
 
-export default function PhotographerContent({ medias, onLikeUpdate }) {
+export default function PhotographerContent({
+  photographer,
+  medias,
+  onLikeUpdate,
+}) {
   const [filterValue, setFilterValue] = useState("popularity");
+
+  const totalLikes = useMemo(() => {
+    return medias.reduce((total, media) => total + media.likes, 0);
+  }, [medias]);
 
   // Tri des médias selon le filtre sélectionné
   const sortedMedias = [...medias].sort((a, b) => {
@@ -24,6 +33,7 @@ export default function PhotographerContent({ medias, onLikeUpdate }) {
     <>
       <Filter onFilterChange={setFilterValue} />
       <MediaGallery medias={sortedMedias} onLikeUpdate={onLikeUpdate} />
+      <PriceCard price={photographer.price} totalLikes={totalLikes} />
     </>
   );
 }

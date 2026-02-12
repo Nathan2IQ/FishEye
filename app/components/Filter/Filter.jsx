@@ -10,6 +10,8 @@ export default function Filter({ onFilterChange }) {
     label: "Popularité",
   });
 
+  const [focusedIndex, setFocusedIndex] = useState(0);
+
   const dropdownRef = useRef(null);
 
   const options = [
@@ -32,6 +34,22 @@ export default function Filter({ onFilterChange }) {
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
+    setFocusedIndex(0);
+  };
+
+  const handleToggleKeyDown = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleToggle();
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setIsOpen(true);
+      setFocusedIndex(0);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setIsOpen(true);
+      setFocusedIndex(availableOptions.length - 1);
+    }
   };
 
   const handleSelect = (option) => {
@@ -39,6 +57,22 @@ export default function Filter({ onFilterChange }) {
     setIsOpen(false);
     if (onFilterChange) {
       onFilterChange(option.value);
+    }
+  };
+
+  const handleOptionKeyDown = (e, option, index) => {
+    e.preventDefault();
+
+    if (e.key === "Enter" || e.key === " ") {
+      handleSelect(option);
+    } else if (e.key === "ArrowDown") {
+      setFocusedIndex((index + 1) % availableOptions.length);
+    } else if (e.key === "ArrowUp") {
+      setFocusedIndex(
+        (index - 1 + availableOptions.length) % availableOptions.length,
+      );
+    } else if (e.key === "Escape") {
+      setIsOpen(false);
     }
   };
 
@@ -52,23 +86,36 @@ export default function Filter({ onFilterChange }) {
       <p className={Style.label}>Trier par</p>
 
       <div className={Style.selectWrapper}>
-        <div className={Style.selectHeader} onClick={handleToggle}>
+        <div
+          className={Style.selectHeader}
+          onClick={handleToggle}
+          onKeyDown={handleToggleKeyDown}
+          role="button"
+          tabIndex={0}
+          aria-expanded={isOpen}
+          aria-haspopup="listbox"
+          aria-label="Trier les médias"
+        >
           <span>{selectedOption.label}</span>
           <i
             className={`fa-solid fa-angle-down ${isOpen ? Style.rotate : ""}`}
+            aria-hidden="true"
           ></i>
         </div>
 
         {isOpen && (
-          <div className={Style.dropdown}>
-            {availableOptions.map((option) => (
+          <div className={Style.dropdown} role="listbox">
+            {availableOptions.map((option, index) => (
               <div
                 key={option.value}
-                className={Style.option}
+                className={`${Style.option} ${index === focusedIndex ? Style.focused : ""}`}
                 onClick={() => handleSelect(option)}
+                onKeyDown={(e) => handleOptionKeyDown(e, option, index)}
+                role="option"
+                tabIndex={0}
+                aria-selected={index === focusedIndex}
               >
                 {option.label}
-                <br />
               </div>
             ))}
           </div>

@@ -28,6 +28,11 @@
     cursor: pointer;
     user-select: none;
 
+    &:focus {
+      outline: 3px solid #000;
+      outline-offset: 2px;
+    }
+
     i {
       margin-left: 10px;
     }
@@ -64,6 +69,12 @@
       width: 90%;
       height: 1px;
       background-color: white;
+    }
+
+    &:focus,
+    &.focused {
+      background-color: #d46f6f;
+      font-weight: 700;
     }
 
     .rotate {
