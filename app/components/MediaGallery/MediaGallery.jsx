@@ -5,7 +5,11 @@ import Style from "./MediaGallery.module.scss";
 import Media from "./Media";
 import LightboxModal from "../LightboxModal/LightboxModal";
 
-export default function MediaGallery({ medias = [], onMediaClick }) {
+export default function MediaGallery({
+  medias = [],
+  onMediaClick,
+  onLikeUpdate,
+}) {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
 
@@ -34,7 +38,12 @@ export default function MediaGallery({ medias = [], onMediaClick }) {
     <>
       <div className={Style.mediaGallery}>
         {medias.map((item) => (
-          <Media key={item.id} media={item} onClick={handleMediaClick} />
+          <Media
+            key={item.id}
+            media={item}
+            onClick={handleMediaClick}
+            onLikeUpdate={onLikeUpdate}
+          />
         ))}
       </div>
 

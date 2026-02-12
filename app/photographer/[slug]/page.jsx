@@ -1,8 +1,9 @@
 import PhotographerBanner from "../../components/PhotographerBanner/PhotographerBanner";
+import PhotographerContent from "../../components/PhotographerContent/PhotographerContent";
+import { notFound } from "next/navigation";
 import { getPhotographer } from "../../lib/prisma-db";
 import { getAllMediasForPhotographer } from "../../lib/prisma-db";
-import { notFound } from "next/navigation";
-import MediaGallery from "../../components/MediaGallery/MediaGallery";
+import { updateNumberOfLikes } from "../../lib/prisma-db";
 
 export default async function PhotographerPage({ params }) {
   const { slug } = await params;
@@ -19,10 +20,18 @@ export default async function PhotographerPage({ params }) {
     notFound();
   }
 
+  const handleUpdateLikes = async (mediaId, newNumberOfLikes) => {
+    "use server";
+    await updateNumberOfLikes(mediaId, newNumberOfLikes);
+  };
+
   return (
     <div>
       <PhotographerBanner photographer={photographer} />
-      <MediaGallery medias={await getAllMediasForPhotographer(id)} />
+      <PhotographerContent
+        medias={await getAllMediasForPhotographer(id)}
+        onLikeUpdate={handleUpdateLikes}
+      />
     </div>
   );
 }
