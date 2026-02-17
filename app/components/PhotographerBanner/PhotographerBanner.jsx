@@ -5,7 +5,7 @@ export default function PhotographerBanner({ photographer }) {
   return (
     <section className={Style.banner}>
       <div className={Style.info}>
-        <h1 className={Style.name}>{photographer.name}</h1>
+        <h2 className={Style.name}>{photographer.name}</h2>
         <p className={Style.location}>
           {photographer.city}, {photographer.country}
         </p>

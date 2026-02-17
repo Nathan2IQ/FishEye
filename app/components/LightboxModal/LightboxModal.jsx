@@ -12,10 +12,12 @@ export default function LightboxModal({
 }) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
-  // Réinitialiser l'index quand initialIndex change
+  // Réinitialiser l'index à chaque ouverture de la lightbox
   useEffect(() => {
-    setCurrentIndex(initialIndex);
-  }, [initialIndex]);
+    if (isOpen) {
+      setCurrentIndex(initialIndex);
+    }
+  }, [isOpen, initialIndex]);
 
   // Navigation vers le média précédent
   const goToPrevious = () => {
@@ -33,9 +35,9 @@ export default function LightboxModal({
 
   // Gérer la navigation au clavier
   useEffect(() => {
-    const handleKeyPress = (e) => {
-      if (!isOpen) return;
+    if (!isOpen) return;
 
+    const handleKeyPress = (e) => {
       if (e.key === "ArrowLeft") {
         goToPrevious();
       } else if (e.key === "ArrowRight") {
@@ -45,7 +47,7 @@ export default function LightboxModal({
 
     document.addEventListener("keydown", handleKeyPress);
     return () => document.removeEventListener("keydown", handleKeyPress);
-  }, [isOpen, currentIndex]);
+  }, [isOpen]);
 
   if (!media || media.length === 0) return null;
 
@@ -67,7 +69,7 @@ export default function LightboxModal({
           onClick={goToPrevious}
           aria-label="Image précédente"
         >
-          <i className="fa-solid fa-angle-left"></i>
+          <em className="fa-solid fa-angle-left"></em>
         </button>
 
         {/* Média affiché */}
@@ -83,6 +85,10 @@ export default function LightboxModal({
               src={`/${currentMedia.video}`}
               controls
               className={Style.media}
+              aria-label={currentMedia.title}
+              autoPlay
+              muted
+              loop
             >
               Votre navigateur ne supporte pas la lecture de vidéos.
             </video>
@@ -98,7 +104,7 @@ export default function LightboxModal({
           onClick={goToNext}
           aria-label="Image suivante"
         >
-          <i className="fa-solid fa-angle-right"></i>
+          <em className="fa-solid fa-angle-right"></em>
         </button>
       </div>
     </Modal>

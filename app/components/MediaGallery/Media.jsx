@@ -107,13 +107,14 @@ export default function Media({ media, onClick, onLikeUpdate }) {
           src={`/${media.video}`}
           className={Style.mediaImage}
           aria-label={media.title}
+          muted
         />
       )}
       <div className={Style.mediaInfo}>
         <h3>{media.title}</h3>
         <p>
           {likesCount}{" "}
-          <i
+          <em
             className={isLiked ? "fa-solid fa-heart" : "fa-regular fa-heart"}
             onClick={handleLike}
             onKeyDown={handleLikeKeyDown}
@@ -121,7 +122,7 @@ export default function Media({ media, onClick, onLikeUpdate }) {
             role="button"
             aria-disabled={isUpdating}
             aria-label={isLiked ? "Unlike" : "Like"}
-          ></i>
+          ></em>
         </p>
       </div>
     </article>

@@ -52,81 +52,81 @@
     object-fit: cover;
     margin: 0 40px;
   }
-}
 
-// Styles pour la modale de contact
-.contactModal {
-  background-color: #db8876;
-  border-radius: 5px;
-  padding: 10px 40px;
-  max-width: 700px;
-  width: 90%;
-  max-height: 95vh;
-  overflow-y: auto;
+  // Styles pour la modale de contact
+  .contactModal {
+    background-color: #db8876;
+    border-radius: 5px;
+    padding: 10px 40px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 95vh;
+    overflow-y: auto;
 
-  // Personnalisation du bouton de fermeture pour la modale de contact
-  button {
-    font-size: 100px;
-    color: #fff;
-    width: auto;
-    height: auto;
-    top: -15px;
-    right: 30px;
+    // Personnalisation du bouton de fermeture pour la modale de contact
+    button {
+      font-size: 100px;
+      color: #fff;
+      width: auto;
+      height: auto;
+      top: -15px;
+      right: 30px;
+    }
   }
-}
 
-.modalHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  padding-right: 60px; // Espace pour le bouton de fermeture
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-right: 60px; // Espace pour le bouton de fermeture
 
-  h2 {
-    font-size: 64px;
-    color: #000;
-    font-weight: 400;
+    h2 {
+      font-size: 64px;
+      color: #000;
+      font-weight: 400;
+    }
   }
-}
 
-.contactForm {
-  display: flex;
-  flex-direction: column;
-
-  .formGroup {
+  .contactForm {
     display: flex;
     flex-direction: column;
 
-    label {
-      font-size: 36px;
-      color: #312e2e;
-      font-weight: 400;
+    .formGroup {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-size: 36px;
+        color: #312e2e;
+        font-weight: 400;
+      }
+
+      input,
+      textarea {
+        padding: 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        background-color: #fff;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
     }
 
-    input,
-    textarea {
-      padding: 15px;
+    .submitButton {
+      background-color: #901c1c;
+      color: white;
       border: none;
       border-radius: 5px;
+      padding: 15px 30px;
       font-size: 18px;
-      background-color: #fff;
+      cursor: pointer;
+      align-self: flex-start;
+      margin-top: 20px;
     }
-
-    textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-  }
-
-  .submitButton {
-    background-color: #901c1c;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 15px 30px;
-    font-size: 18px;
-    cursor: pointer;
-    align-self: flex-start;
-    margin-top: 20px;
   }
 }

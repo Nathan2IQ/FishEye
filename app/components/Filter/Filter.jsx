@@ -97,10 +97,10 @@ export default function Filter({ onFilterChange }) {
           aria-label="Trier les médias"
         >
           <span>{selectedOption.label}</span>
-          <i
+          <em
             className={`fa-solid fa-angle-down ${isOpen ? Style.rotate : ""}`}
             aria-hidden="true"
-          ></i>
+          ></em>
         </div>
 
         {isOpen && (

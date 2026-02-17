@@ -11,13 +11,28 @@ export default function PhotographerContent({
   onLikeUpdate,
 }) {
   const [filterValue, setFilterValue] = useState("popularity");
+  const [localMedias, setLocalMedias] = useState(medias);
 
   const totalLikes = useMemo(() => {
-    return medias.reduce((total, media) => total + media.likes, 0);
-  }, [medias]);
+    return localMedias.reduce((total, media) => total + media.likes, 0);
+  }, [localMedias]);
+
+  const handleLikeUpdate = async (mediaId, newNumberOfLikes) => {
+    // Mettre à jour l'état local immédiatement
+    setLocalMedias((prevMedias) =>
+      prevMedias.map((media) =>
+        media.id === mediaId ? { ...media, likes: newNumberOfLikes } : media,
+      ),
+    );
+
+    // Appeler la fonction de mise à jour de la base de données
+    if (onLikeUpdate) {
+      await onLikeUpdate(mediaId, newNumberOfLikes);
+    }
+  };
 
   // Tri des médias selon le filtre sélectionné
-  const sortedMedias = [...medias].sort((a, b) => {
+  const sortedMedias = [...localMedias].sort((a, b) => {
     switch (filterValue) {
       case "date":
         return new Date(b.date) - new Date(a.date);
@@ -32,7 +47,7 @@ export default function PhotographerContent({
   return (
     <>
       <Filter onFilterChange={setFilterValue} />
-      <MediaGallery medias={sortedMedias} onLikeUpdate={onLikeUpdate} />
+      <MediaGallery medias={sortedMedias} onLikeUpdate={handleLikeUpdate} />
       <PriceCard price={photographer.price} totalLikes={totalLikes} />
     </>
   );
